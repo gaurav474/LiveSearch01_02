@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+    <center>
+        <h2>
+            Search Employee Data
+        </h2>
+        <hr />
+
+        <input type="text" id="txtsearch" placeholder="Search Employee by Name" />
+        <hr />
+
+        <table border="1">
+            <tr>
+                <th>Emp Id</th>
+                <th>Emp Name</th>
+                <th>Emp Email</th>
+                <th>Emp Contact</th>
+            </tr>
+            @foreach (var empitem in ViewBag.result)
+            {
+                <tr>
+                    <td>@empitem.EmpId</td>
+                    <td>@empitem.EmpName</td>
+                    <td>@empitem.EmpEmail</td>
+                    <td>@empitem.EmpContact</td>
+                </tr>
+            }
+        </table>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+        </script>
+        <script>
+            $("#txtsearch").on("keyup", function () {
+                var txtenter = $(this).val();
+                $("table tr").each(function (results) {
+                    if (results !== 0) {
+                        var id = $(this).find("td:nth-child(2)").text();
+                        if (id.indexOf(txtenter) !== 0 && id.toLowerCase().indexOf(txtenter.toLowerCase()) < 0) {
+                            $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+                    }
+                });
+            });
+        </script>
+    </center>
+

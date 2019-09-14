@@ -1,0 +1,23 @@
+﻿@model mvc_live_search.Models.GetEmpClass
+
+@{
+    ViewBag.Title = "GetIndex";
+}
+    <center>
+        <h2>Selected Data</h2>
+        <hr />
+
+        @Html.DropDownListFor(model => model.EmpId, ViewBag.employees as SelectList, "--Select Employee--", new { @onChange = "selectedtext(this)" })
+        <input type="text" id="txt" readonly="readonly" />
+    </center>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+<script>
+    function selectedtext(ddlitem) {
+        var selvalue = ddlitem.value;
+        var seltext = ddlitem.options[ddlitem.selectedIndex].innerHTML;
+        $('#txt').val(seltext);
+    }
+</script>
+
+
